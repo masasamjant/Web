@@ -7,7 +7,9 @@
     <RootNamespace>Masasamjant.Web</RootNamespace>
     <AssemblyName>Masasamjant.Web</AssemblyName>
     <OutputType>Library</OutputType>
-    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>    
+    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <Title>Masasamjant Web</Title>
+    <Description>General framework to build web applications.</Description>
   </PropertyGroup>
 
   <ItemGroup>

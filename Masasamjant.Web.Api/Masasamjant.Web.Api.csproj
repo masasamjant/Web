@@ -8,6 +8,8 @@
     <AssemblyName>Masasamjant.Web.Api</AssemblyName>
     <OutputType>Library</OutputType>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <Title>Masasamjant Web API</Title>
+    <Description>Framework to build web applications using web API</Description>    
   </PropertyGroup>
 
 </Project>

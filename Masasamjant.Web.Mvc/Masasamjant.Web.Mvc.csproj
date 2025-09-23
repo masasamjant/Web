@@ -8,6 +8,8 @@
     <AssemblyName>Masasamjant.Web.Mvc</AssemblyName>
     <OutputType>Library</OutputType>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <Title>Masasamjant Web MVC</Title>
+    <Description>Framework to build web applications using model-view-controller pattern.</Description>
   </PropertyGroup>
 
   <ItemGroup>
