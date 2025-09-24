@@ -60,5 +60,14 @@
         {
             session.SetString(key, value);
         }
+
+        /// <summary>
+        /// Creates unique session identifier.
+        /// </summary>
+        /// <returns>A unique session identifier.</returns>
+        protected override string CreateSessionIdentifier()
+        {
+            return session.Id;
+        }
     }
 }
