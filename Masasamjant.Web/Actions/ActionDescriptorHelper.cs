@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Abstractions;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -93,5 +94,32 @@ namespace Masasamjant.Web.Actions
         /// <returns>A <see cref="IActionDescriptor"/>.</returns>
         public static IActionDescriptor CreateActionDescriptor(string actionName, string controllerName, string? areaName = null)
             => new InternalActionDescriptor(actionName, controllerName, areaName);
+
+        /// <summary>
+        /// Generates URL with path for an action specified by <see cref="IActionDescriptor"/>.
+        /// </summary>
+        /// <param name="url">The <see cref="IUrlHelper"/>.</param>
+        /// <param name="actionDescriptor">The <see cref="IActionDescriptor"/>.</param>
+        /// <param name="routeValues">The route values.</param>
+        /// <returns>A URL with path for action described by <paramref name="actionDescriptor"/>.</returns>
+        public static string Action(this IUrlHelper url, IActionDescriptor actionDescriptor, object? routeValues = null)
+        {
+            var routeValueDictionary = new RouteValueDictionary(routeValues);
+
+            if (!string.IsNullOrWhiteSpace(actionDescriptor.AreaName))
+                routeValueDictionary["area"] = actionDescriptor.AreaName;
+
+            return url.Action(actionDescriptor.ActionName, actionDescriptor.ControllerName, routeValueDictionary) ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Generates URL with path for an action specified by <see cref="ActionDescriptor"/>.
+        /// </summary>
+        /// <param name="url">The <see cref="IUrlHelper"/>.</param>
+        /// <param name="actionDescriptor">The <see cref="ActionDescriptor"/>.</param>
+        /// <param name="routeValues">The route values.</param>
+        /// <returns>A URL with path for action described by <paramref name="actionDescriptor"/>.</returns>
+        public static string Action(this IUrlHelper url, ActionDescriptor actionDescriptor, object? routeValues = null)
+            => Action(url, actionDescriptor.AsInterface(), routeValues);
     }
 }
