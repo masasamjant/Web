@@ -11,7 +11,12 @@ namespace Masasamjant.Web
         /// Default value of <see cref="SessionIdentifierKey"/>.
         /// </summary>
         protected const string DefaultSessionIdentifierKey = "SESSION-IDENTIFIER-E4D397D25EC34DD3A819B0334388DF7A";
-        
+
+        /// <summary>
+        /// Notifies when <see cref="Clear"/> method is invoked.
+        /// </summary>
+        public event EventHandler<SessionIdentifierEventArgs>? Cleared;
+
         /// <summary>
         /// Gets the key to store session identifier.
         /// </summary>
@@ -70,6 +75,14 @@ namespace Masasamjant.Web
         {
             var provider = new Base64SHA1Provider();
             return provider.CreateHash(Guid.NewGuid().ToString());
+        }
+
+        /// <summary>
+        /// Raises <see cref="Cleared"/> event.
+        /// </summary>
+        protected void OnCleared()
+        {
+            Cleared?.Invoke(this, new SessionIdentifierEventArgs(GetSessionIdentifier()));
         }
     }
 }

@@ -30,6 +30,7 @@
         public override void Clear()
         {
             session.Clear();
+            OnCleared();
         }
 
         /// <summary>
@@ -59,15 +60,6 @@
         public override void SetString(string key, string value)
         {
             session.SetString(key, value);
-        }
-
-        /// <summary>
-        /// Creates unique session identifier.
-        /// </summary>
-        /// <returns>A unique session identifier.</returns>
-        protected override string CreateSessionIdentifier()
-        {
-            return session.Id;
         }
     }
 }

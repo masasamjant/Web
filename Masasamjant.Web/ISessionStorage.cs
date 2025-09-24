@@ -6,6 +6,11 @@
     public interface ISessionStorage
     {
         /// <summary>
+        /// Notifies when <see cref="Clear"/> method is invoked.
+        /// </summary>
+        event EventHandler<SessionIdentifierEventArgs>? Cleared;
+
+        /// <summary>
         /// Gets value from session.
         /// </summary>
         /// <param name="key">The session key.</param>

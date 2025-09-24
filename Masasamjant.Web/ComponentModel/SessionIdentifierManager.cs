@@ -9,11 +9,9 @@ namespace Masasamjant.Web.ComponentModel
     /// Represents <see cref="IIdentifierManager"/> where scope of identifiers is session. The identifiers are stored using <see cref="IdentifierManager"/> class.
     /// </summary>
     /// <remarks>Instance of this class is thread-safe and can be used as singleton instance.</remarks>
-    public sealed class SessionIdentifierManager : ISessionIdentifierManager, IIdentifierManager
+    public sealed class SessionIdentifierManager : ITemporaryIdentifierManager
     {
-        private readonly IdentifierManager identifierManager;
-        private readonly List<ISessionIdentifierManagerEvents> eventsList;
-        private readonly Lock eventsListLock;
+        private readonly TemporaryIdentifierManager identifierManager;
 
         /// <summary>
         /// Initializes new default instance of the <see cref="SessionIdentifierManager"/> class that creates Base-64 SHA1 temporary identifiers.
@@ -28,43 +26,7 @@ namespace Masasamjant.Web.ComponentModel
         /// <param name="hashProvider">The <see cref="IStringHashProvider"/> to compute temporary identifiers.</param>
         public SessionIdentifierManager(IStringHashProvider hashProvider)
         {
-            this.identifierManager = new IdentifierManager(hashProvider);
-            this.eventsList = new List<ISessionIdentifierManagerEvents>();
-            this.eventsListLock = new Lock();
-        }
-
-        /// <summary>
-        /// Register specified <see cref="ISessionIdentifierManagerEvents"/> with manager. After this manager 
-        /// will react to events of <paramref name="events"/>.
-        /// </summary>
-        /// <param name="events">The <see cref="ISessionIdentifierManagerEvents"/> to add.</param>
-        public void AddEventsProvider(ISessionIdentifierManagerEvents events)
-        {
-            lock (eventsListLock)
-            {
-                if (!eventsList.Contains(events))
-                {
-                    eventsList.Add(events);
-                    events.RemoveIdentifiers += OnEventsRemoveIdentifiers;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Remove all registered <see cref="ISessionIdentifierManagerEvents"/> from manager.
-        /// </summary>
-        public void ClearEventsProviders()
-        {
-            List<ISessionIdentifierManagerEvents> list;
-
-            lock (eventsListLock)
-            {
-                list = eventsList.ToList();
-                eventsList.Clear();
-            }
-
-            foreach (var events in list)
-                events.RemoveIdentifiers -= OnEventsRemoveIdentifiers;
+            identifierManager = new TemporaryIdentifierManager(hashProvider);
         }
 
         /// <summary>
@@ -88,20 +50,6 @@ namespace Masasamjant.Web.ComponentModel
         public string GetTemporaryIdentifier(string sessionIdentifier, params object[] identifiers)
         {
             return identifierManager.GetTemporaryIdentifier(sessionIdentifier, identifiers);
-        }
-
-        /// <summary>
-        /// Remove specified <see cref="ISessionIdentifierManagerEvents"/> from manager. After this manager 
-        /// will not react to events of <paramref name="events"/>.
-        /// </summary>
-        /// <param name="events">The <see cref="ISessionIdentifierManagerEvents"/> to remove.</param>
-        public void RemoveEventsProvider(ISessionIdentifierManagerEvents events)
-        {
-            lock (eventsListLock)
-            {
-                if (eventsList.Remove(events))
-                    events.RemoveIdentifiers -= OnEventsRemoveIdentifiers;
-            }
         }
 
         /// <summary>
@@ -136,11 +84,6 @@ namespace Masasamjant.Web.ComponentModel
         public bool TryGetIdentifier(string sessionIdentifier, string temporaryIdentifier, out object[] identifiers)
         {
             return identifierManager.TryGetIdentifier(sessionIdentifier, temporaryIdentifier, out identifiers);
-        }
-
-        private void OnEventsRemoveIdentifiers(object? sender, SessionIdentifierEventArgs e)
-        {
-            RemoveIdentifiers(e.SessionIdentifier);
         }
     }
 }
