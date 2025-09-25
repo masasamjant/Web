@@ -1,4 +1,4 @@
-﻿namespace Masasamjant.Web.Controllers
+﻿namespace Masasamjant.Web
 {
     /// <summary>
     /// Represents API controller.

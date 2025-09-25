@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Masasamjant.Web.Controllers
+namespace Masasamjant.Web
 {
     /// <summary>
     /// Represents <see cref="ControllerBase"/> that implements <see cref="IApiController"/> interface.

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Masasamjant.Web.ViewModels
+namespace Masasamjant.Web
 {
     /// <summary>
     /// Represents abstract view model.
@@ -16,7 +16,7 @@ namespace Masasamjant.Web.ViewModels
         {
             foreach (var type in assembly.GetTypes())
             {
-                if (TypeHelper.IsOfType(type, typeof(ViewModel)))
+                if (type.IsOfType(typeof(ViewModel)))
                     yield return type;
             }
         }
