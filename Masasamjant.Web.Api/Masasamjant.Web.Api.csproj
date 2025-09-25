@@ -12,4 +12,8 @@
     <Description>Framework to build web applications using web API</Description>    
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Masasamjant.Web\Masasamjant.Web.csproj" />
+  </ItemGroup>
+
 </Project>
