@@ -1,6 +1,4 @@
-﻿using Masasamjant.Reflection;
-using Masasamjant.Resources;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using Masasamjant.Resources;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Masasamjant.Web.Lists
