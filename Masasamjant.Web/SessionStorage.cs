@@ -34,7 +34,7 @@ namespace Masasamjant.Web
         /// Gets the session identifier.
         /// </summary>
         /// <returns>A unique string to identify session.</returns>
-        public string GetSessionIdentifier()
+        public virtual string GetSessionIdentifier()
         {
             var sessionIdentifier = GetString(SessionIdentifierKey);
 

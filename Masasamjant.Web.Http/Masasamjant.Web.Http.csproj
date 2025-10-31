@@ -1,16 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>Masasamjant.Web</RootNamespace>
-    <AssemblyName>Masasamjant.Web.Api</AssemblyName>
-    <OutputType>Library</OutputType>
-    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
-    <Title>Masasamjant Web API</Title>
-    <Description>Framework to build web applications using web API</Description>
-    <IsPackable>true</IsPackable>    
+    <Title>Masasamjant Web HTTP</Title>
+    <Description>Framework to build web applications that use HTTP clients.</Description>    
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>1.0.0</Version>
     <Copyright>2025 - Matti Jantti</Copyright>
@@ -23,6 +18,10 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Authors>Matti Jantti</Authors>    
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Masasamjant.Http" Version="1.3.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Masasamjant.Web\Masasamjant.Web.csproj" />

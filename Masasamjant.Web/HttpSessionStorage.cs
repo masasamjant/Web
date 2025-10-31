@@ -61,5 +61,14 @@
         {
             session.SetString(key, value);
         }
+
+        /// <summary>
+        /// Gets the session identifier.
+        /// </summary>
+        /// <returns>A unique string to identify session.</returns>
+        public override string GetSessionIdentifier()
+        {
+            return session.Id;
+        }
     }
 }

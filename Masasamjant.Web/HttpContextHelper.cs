@@ -45,7 +45,7 @@
         /// <param name="name">The HTTP header name.</param>
         /// <param name="values">The HTTP header values, if returns <c>true</c>.</param>
         /// <returns><c>true</c> if headers has specified header; <c>false</c> otherwise.</returns>
-        public static bool TryGetRequestHeaderValue(HttpContext context, string name, out IEnumerable<string> values)
+        public static bool TryGetRequestHeaderValue(this HttpContext context, string name, out IEnumerable<string> values)
             => TryGetHeaderValue(context.Request.Headers, name, out values);
 
         /// <summary>

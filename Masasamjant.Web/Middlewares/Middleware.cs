@@ -18,12 +18,5 @@
         /// Gets the <see cref="RequestDelegate"/> of the next action.
         /// </summary>
         protected RequestDelegate Next { get; }
-
-        /// <summary>
-        /// Executed middleware action. <see cref="Next"/> must be invoked when action completes.
-        /// </summary>
-        /// <param name="context">The <see cref="HttpContext"/> where middleware is executed.</param>
-        /// <returns>A task.</returns>
-        public abstract Task InvokeAsync(HttpContext context);
     }
 }

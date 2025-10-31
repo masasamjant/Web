@@ -10,10 +10,33 @@
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
     <Title>Masasamjant Web</Title>
     <Description>General framework to build web applications.</Description>
+    <IsPackable>true</IsPackable>    
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <Copyright>2025 - Matti Jantti</Copyright>
+    <PackageProjectUrl>https://github.com/masasamjant/Web</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/masasamjant/Web</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Authors>Matti Jantti</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Masasamjant.Framework" Version="1.4.1" />
+    <PackageReference Include="Masasamjant.Framework" Version="1.6.2" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  
 </Project>
