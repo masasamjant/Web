@@ -4,9 +4,12 @@ namespace Masasamjant.Web
 {
     public abstract class UnitTest
     {
-        protected HttpContext CreateHttpContext()
+        protected HttpContext CreateHttpContext(ISession? session = null)
         {
-            return new DefaultHttpContext();
+            var context = new DefaultHttpContext();
+            if (session != null)
+                context.Session = session;
+            return context;
         }
     }
 }
